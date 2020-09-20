@@ -13,6 +13,6 @@ The following libraries will be installed:
 
 Open the terminal, go to the folder interested and clone this repo.
 
-Later run the command `docker-compose up`.
+Later run the command `docker-compose build` and  `docker-compose up`.
 
 last step, open the browser at link: [http://localhost:8080](http://localhost:8080).

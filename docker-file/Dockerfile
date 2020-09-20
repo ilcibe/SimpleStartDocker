@@ -6,17 +6,23 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libpng-dev
 
+# istall library zip
+RUN apt-get update && apt-get install -y \
+    zlib1g-dev \
+    libzip-dev \
+    unzip
+
 # install library docker
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
-    mysqli pdo pdo_mysql
+    mysqli pdo pdo_mysql zip
 
 # install composer
 RUN apt-get update && apt-get -y --no-install-recommends install git \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
     && rm -rf /var/lib/apt/lists/*
 
-# install npm
+#install npm
 RUN apt-get install -y curl \
   && curl -sL https://deb.nodesource.com/setup_9.x | bash - \
   && apt-get install -y nodejs \
